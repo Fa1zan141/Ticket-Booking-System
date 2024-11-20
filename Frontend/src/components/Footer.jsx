@@ -18,7 +18,7 @@ function Footer() {
         <div className="footer-links">
           <a href="#events" className="footer-link">Event</a>
           <a href="#contact" className="footer-link">Contact</a>
-          <a href="#signin" className="footer-link cta-button">Sign In</a>
+          <a href="/signin" className="footer-link cta-button">Sign In</a>
         </div>
       </div>
 

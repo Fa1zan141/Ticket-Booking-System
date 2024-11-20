@@ -1,8 +1,15 @@
 import React from 'react';
 import '../styles/Navbar.css';
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/signin"); 
+  };
   return (
+    
     <nav className="navbar">
       <div className="logo">🌟 Mellodian Community Park</div>
       <ul className="nav-links">
@@ -10,7 +17,7 @@ function Navbar() {
         <li><a href="#events">Event</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button className="sign-in">Sign In</button>
+      <button  onClick={handleNavigation} className="sign-in">Sign In</button>
     </nav>
   );
 }

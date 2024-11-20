@@ -55,7 +55,8 @@ html,body {
   }
   
   .sign-in:hover {
-    background-color: #ffe600;
+    background-color: #292929;
+    color: #f5c000;
     transition: background-color 0.3s ease;
   }
   
