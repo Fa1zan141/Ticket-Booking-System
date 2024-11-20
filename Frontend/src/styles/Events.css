@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html,body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    font-family: Inter;
+  }
+  .event-card h3 {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+.events {
+    text-align: center;
+    padding: 3rem 8rem;
+    text-align: justify;
+    text-justify: inter-word;
+    background-color: #1a1a1a;
+    color: white;
+  }
+  .events h2 {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: justify;
+    text-justify: inter-word;
+    background-color: #1a1a1a;
+    color: white;
+  }
+  .events p {
+    font-size: 16px;
+    font-weight: 200;
+    text-align: justify;
+    text-justify: inter-word;
+    background-color: #1a1a1a;
+    border-radius: 50px;
+    color: white;
+  }
+  
+  .event-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .event-card {
+    background-color: #252525;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .event-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .event-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .event-price {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center; 
+    gap: 1rem; 
+    max-width: 3000px;
+    padding: 0rem; 
+    color: #fff; 
+  }
+  
+  .event-price p {
+    font-size: 0.5rem;
+    font-weight: 600; 
+    background-color: #1a1a1a; 
+    
+    color: #f5c000;
+    
+  }
+  
+  .event-price h3 {
+    font-size: 1rem; 
+    margin-left: 100px;
+    font-weight: bold; 
+     
+  }
+  
+  .button{
+    background-color: #f5c000;
+    width: 300px;
+    font-size: 14px;
+    margin-top: 15px;
+    border-radius: 50px;
+    height: 30px;
+    font-weight: 600;
+    border: transparent;
+  }
+  .button:hover {
+    background-color: #ffd027;
+    width: 300px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 15px;
+    border-radius: 50px;
+    height: 30px;
+    font-weight: 600;
+    border: transparent;
+  }

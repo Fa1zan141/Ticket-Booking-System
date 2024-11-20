@@ -1,0 +1,49 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: Inter;
+}
+.hero {
+    text-align: center;
+    background-color: #252525;
+    color: white;
+    padding: 3rem 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 50px;
+    font-weight: 800;
+  }
+  
+  .hero span {
+    color: #f5c000;
+    font-weight: 800;
+    font-size: 50px;
+  }
+  
+  .hero-images {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 2rem;
+    overflow: hidden;
+  }
+  
+  .hero-images img {
+    width: 450px;
+    height: 300px;
+    border-radius: 10px;
+    
+  }
+  
+  .hero-images img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  
