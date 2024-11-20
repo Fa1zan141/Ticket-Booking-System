@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: #020202;
+    font-family: Inter;
+}
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    outline: none;
+  }
+  .event-details-container {
+    border-radius: 10px;
+    background-color: #121212;
+    color: white;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .event-hero {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .event-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .event-meta {
+    margin-top: 1rem;
+    display: flex;
+    color: #ffd700;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .event-location,
+  .event-date {
+    background-color: #1a1a1a;
+    color: #ffd700;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .event-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .event-image-wrapper {
+    flex: 1 1 60%;
+    max-width: 500px;
+  }
+  
+  .event-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .event-description-wrapper {
+    flex: 1 1 35%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .event-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .event-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #aaa;
+    margin-bottom: 2rem;
+  }
+  
+  .event-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .event-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .event-button {
+    background-color: #ffd700;
+    color: #121212;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .event-button:hover {
+    background-color: #e5c100;
+  }
+  .footer {
+    background-color: #121212;
+    padding: 2rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+  }
+  
+  .footer-logo {
+    font-size: 1.2rem;
+  }
+  
+  .footer-nav a {
+    margin: 0 1rem;
+  }
+  
+  .footer-sign-in-btn {
+    background-color: #ffd700;
+    color: #121212;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    color: #aaa;
+    margin-top: 1rem;
+  }
+  
