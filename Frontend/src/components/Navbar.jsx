@@ -15,7 +15,7 @@ function Navbar() {
       <ul className="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/event">Event</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="/Contact-us">Contact</a></li>
       </ul>
       <button  onClick={handleNavigation} className="sign-in">Sign In</button>
     </nav>

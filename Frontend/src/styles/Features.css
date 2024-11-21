@@ -19,6 +19,7 @@ html,body {
 .features-content {
   display: flex;
   gap: 2rem;
+  align-items: center;
   margin-bottom: 2rem;
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles/CardPaymentPage.css";
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+import { useNavigate } from "react-router-dom";
 const CardPaymentPage = () => {
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
@@ -19,6 +19,8 @@ const CardPaymentPage = () => {
   const handlePayment = () => {
     alert("Payment Submitted!");
   };
+
+  
 {/* const closePopup = () => {
     setPaymentSuccess(false);
   };

@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import "./styles/PaymentPage.css";
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+import { useNavigate } from "react-router-dom";
 const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("bank");
 
   const handlePaymentChange = (method) => {
     setPaymentMethod(method);
+  };
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/Payconfirmation"); 
   };
 
   return (
@@ -50,7 +55,7 @@ const PaymentPage = () => {
                 </button>
               </div>
             </div>
-            <button className="next-button">Next</button>
+            <button onClick={handleNavigation} className="next-button">Next</button>
           </div>
         </div>
       </main>

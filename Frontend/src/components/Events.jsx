@@ -1,7 +1,13 @@
 import React from 'react';
 import '../styles/Events.css';
-
+import { useNavigate } from "react-router-dom";
 function Events() {
+
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate("/payment"); 
+  };
   return (
     <section className="events">
       <h2>Upcoming Events This Week</h2>
@@ -17,7 +23,7 @@ function Events() {
             </div>
             
             <h3>Christmas Eve</h3>
-            <button className='button'>Book Ticket </button>
+            <button onClick={handleNavigation} className='button'>Book Ticket </button>
           </div>
         ))}
       </div>
