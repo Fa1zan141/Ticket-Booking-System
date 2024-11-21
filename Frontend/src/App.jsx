@@ -6,6 +6,8 @@ import SignUp from './SignUp';
 import EventsPage from './EventsPage';
 import EventDetailsPage from './EventDetailsPage';
 import PaymentConfirmation from './PaymentConfirmation';
+import PaymentPage from './PaymentPage';
+import CardPaymentPage from './CardPaymentPage';
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +18,8 @@ function App() {
     <Route path='/event' element={<EventsPage/>} />
     <Route path='/eventdetail' element={<EventDetailsPage/>} />
     <Route path='/Payconfirmation' element={<PaymentConfirmation/>} />
+    <Route path='/Payment' element={<PaymentPage/>} />
+    <Route path='/CardPayment' element={<CardPaymentPage/>} />
     </Routes>
     </BrowserRouter>
   )
