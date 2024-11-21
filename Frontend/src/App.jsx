@@ -5,7 +5,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import EventsPage from './EventsPage';
 import EventDetailsPage from './EventDetailsPage';
-
+import PaymentConfirmation from './PaymentConfirmation';
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +15,7 @@ function App() {
     <Route path='/signup' element={<SignUp/>} />
     <Route path='/event' element={<EventsPage/>} />
     <Route path='/eventdetail' element={<EventDetailsPage/>} />
+    <Route path='/Payconfirmation' element={<PaymentConfirmation/>} />
     </Routes>
     </BrowserRouter>
   )
