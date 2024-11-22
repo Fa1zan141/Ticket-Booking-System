@@ -29,9 +29,10 @@ const CardPaymentPage = () => {
   return (
     <div className="payment-page-container">
       <Navbar></Navbar>
-
-      <main className="payment-main">
+      <div className="paymentsection">
         <h1 className="payment-title">PAYMENT</h1>
+        </div>
+      <main className="payment-main">
         <div className="payment-content">
           <div className="payment-image-wrapper">
             <img

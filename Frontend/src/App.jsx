@@ -9,6 +9,8 @@ import PaymentConfirmation from './PaymentConfirmation';
 import PaymentPage from './PaymentPage';
 import CardPaymentPage from './CardPaymentPage';
 import ContactUs from './ContactUs';
+import AddEventPage from './AddEventPage';
+import Dashboard from './Dashboard';
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +24,8 @@ function App() {
     <Route path='/Payment' element={<PaymentPage/>} />
     <Route path='/CardPayment' element={<CardPaymentPage/>} />
     <Route path='/Contact-us' element={<ContactUs/>} />
+    <Route path='/add-event' element={<AddEventPage/>} />
+    <Route path='/dashboard' element={<Dashboard/>} />
     </Routes>
     </BrowserRouter>
   )

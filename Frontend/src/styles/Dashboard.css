@@ -1,0 +1,218 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: white;
+}
+.dashboard {
+  width: 100%;
+  height: 100%;
+}
+
+.dasnavbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #1c1c1c;
+}
+.logo {
+  font-weight: bold;
+}
+.logout-btn {
+  background-color: #ffc107;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.logout-btn:hover {
+  background-color: #ffc107;
+}
+#search{
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+.home-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  color: #ffc107;
+  font-size: 18px;
+  font-weight: bold;
+}
+.home-icon {
+  font-size: 24px;
+}
+.home-text{
+  cursor: pointer;
+}
+
+.stats-section {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+.stat-card {
+  flex: 1;
+  background-color: #282828;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.stat-card span {
+  display: block;
+  font-size: 24px;
+  color: #ffc107;
+  margin-top: 10px;
+}
+.tabs{
+  margin-bottom: 50px;
+}
+.tab-section {
+  padding: 20px;
+  background-color: #1c1c1c;
+}
+.tabs button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #191818;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.tabs .active {
+  background-color: #ffc107;
+  color: black;
+}
+.search-export {
+  position: absolute;
+  display: flex;
+  right: 10px;
+  top: 315px;
+  margin-top: -40px;
+  gap: 2rem;
+  
+}
+.search-bar {
+  flex: 1;
+  margin-right: 10px;
+  max-width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #191818;
+  color: white;
+}
+.export-btn {
+  padding: 10px 20px;
+  background-color: #191818;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.export-btn:hover {
+  background-color: #ffc107;
+}
+
+.table-content {
+  background-color: #282828;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+th {
+  background-color: #1c1c1c;
+  color: rgb(255, 255, 253);
+}
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.edit-btn:hover {
+  color: lightblue;
+}
+.delete-btn:hover {
+  color: red;
+}
+.logout-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button:hover {
+  color: #ffc107;
+}
+
+.placeholder {
+  background-color: #282828;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1c1c1c;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pagination span {
+  font-size: 14px;
+}
+.pagination button {
+  background-color: #282828;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+.pagination button:hover:not(:disabled) {
+  background-color: #ffc107;
+  color: black;
+}
+#iconuser{
+  background-color: #121212;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 40px;
+  text-align: center;
+  position: absolute;
+  top: 160px;
+  color: #ffc107;
+}

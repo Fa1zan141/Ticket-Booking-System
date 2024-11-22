@@ -5,24 +5,18 @@
   padding: 2rem 1rem;
 }
 
-
-.event-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  padding: 2rem;
-}
-
-
 .hero-section {
   text-align: center;
   margin-bottom: 2rem;
+  background-color: #1a1a1a;
+  padding: 2rem 1rem;
+  border-radius: 10px;
 }
 
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: bold;
+  color: #ffd700;
   text-transform: uppercase;
 }
 
@@ -37,18 +31,22 @@
 .event-date {
   background-color: #ffd700;
   color: #121212;
-  padding: 0.5rem 1.5rem;
+  padding: 0.6rem 1.5rem;
   border-radius: 20px;
   font-weight: bold;
   font-size: 0.9rem;
 }
 
-
 .content-section {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 10px;
 }
 
 .image-wrapper {
@@ -62,8 +60,12 @@
   width: 100%;
   display: block;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
+.event-image:hover {
+  transform: scale(1.05);
+}
 
 .description-wrapper {
   flex: 1 1 35%;
@@ -74,6 +76,7 @@
   font-weight: bold;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  color: #ffd700;
 }
 
 .description-text {

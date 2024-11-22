@@ -5,24 +5,15 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  position: relative;
+body {
   background-color: #020202;
+  color: white;
   font-family: "Inter", sans-serif;
 }
 
 a {
   text-decoration: none;
   color: white;
-}
-
-button {
-  cursor: pointer;
-  font-family: inherit;
-  border: none;
-  outline: none;
 }
 
 .navbar-sign-in-btn {
@@ -32,126 +23,131 @@ button {
   border-radius: 50px;
   font-weight: bold;
 }
-.unique-event-container {
+
+.hero-section {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 0px;
+  background-color: #252525;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.hero-event-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-location,
+.hero-date {
+  background-color: #1a1a1a;
+  color: #ffd700;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+
+.event-details-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
   padding: 2rem;
-  background-color: #121212;
-  color: white;
-  border-radius: 10px;
   max-width: 800px;
-  margin: auto;
+  margin-bottom: 50px;
+  margin-left: 280px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
 }
 
-.unique-event-image-section {
+.event-image-container {
   flex: 1;
   max-width: 400px;
 }
 
-.unique-event-image {
-  max-width: 100%;
+.event-image {
+  width: 100%;
   border-radius: 10px;
 }
 
-.unique-event-info-section {
+.event-info-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 1rem;
 }
 
-.unique-event-title {
+.event-title {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 
-.unique-event-price {
+.event-price {
   font-size: 1.8rem;
   color: #ffffff;
+  margin-top: -20px;
 }
 
-.unique-ticket-section {
-  margin-bottom: 1rem;
+.ticket-section {
+  display: flex;
+  flex-direction: column;
 }
 
-.unique-ticket-label {
-  display: block;
-  margin-bottom: 0.5rem;
+.ticket-label {
   font-size: 1rem;
+  margin-bottom: 0.5rem;
   color: #ccc;
 }
 
-.unique-ticket-input {
-  width: 80px;
+.ticket-input {
+  width: 100px;
   padding: 0.5rem;
+  margin-bottom: 20px;
   background-color: #333;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   text-align: center;
 }
 
-.unique-summary-section {
-  margin-bottom: 1rem;
+.summary-section {
+  margin-top: -20px;
 }
 
-.unique-summary-text {
-  margin: 0.5rem 0;
-  color: #aaa;
+.summary-text {
   font-size: 1rem;
+  color: #aaa;
 }
 
-.unique-confirm-button {
-  padding: 0.8rem 1rem;
+.confirm-booking-button {
+  padding: 0.8rem 2rem;
   background-color: #ffd700;
   color: #121212;
   font-weight: bold;
-  border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.unique-confirm-button:hover {
+.confirm-booking-button:hover {
   background-color: #e5c100;
 }
 
 
-.unique-footer {
-  background-color: #121212;
+.cta-section {
+  text-align: center;
   padding: 2rem;
-}
-
-.unique-footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #333;
-  padding-bottom: 1rem;
-}
-
-.unique-footer-logo {
-  font-size: 1.2rem;
-}
-
-.unique-footer-nav a {
-  margin: 0 1rem;
-}
-
-.unique-footer-sign-in-btn {
   background-color: #ffd700;
   color: #121212;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
-.unique-footer-bottom {
-  text-align: center;
-  color: #aaa;
-  margin-top: 1rem;
-}
+

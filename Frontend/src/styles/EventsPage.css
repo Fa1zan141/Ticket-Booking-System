@@ -22,38 +22,4 @@ html,body {
     border: none;
     outline: none;
   }
-  .footer {
-    background-color: #121212;
-    padding: 2rem;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 1rem;
-  }
-  
-  .footer-logo {
-    font-size: 1.2rem;
-  }
-  
-  .footer-nav a {
-    margin: 0 1rem;
-  }
-  
-  .footer-sign-in-btn {
-    background-color: #ffd700;
-    color: #121212;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    color: #aaa;
-    margin-top: 1rem;
-  }
   

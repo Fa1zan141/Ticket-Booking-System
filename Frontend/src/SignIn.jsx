@@ -7,7 +7,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate("/signup"); 
+    navigate("/dashboard"); 
   };
 
   return (
@@ -17,16 +17,16 @@ const SignIn = () => {
         <form>
           <div className="input-box">
             <label>Enter Email*</label>
-            <input type="email" placeholder="Your Email" required />
+            <input  type="email" placeholder="Your Email" required />
           </div>
           <div className="input-box">
             <label>Enter Password*</label>
             <input type="password" placeholder="Password" required />
           </div>
           <div className="forgot-password">
-            <a href="#">Forgot Password?</a>
+            <a href="/">Forgot Password?</a>
           </div>
-          <button type="submit" className="btn-primary">Sign In</button>
+          <button onClick={handleNavigation} type="submit" className="btn-primary">Sign In</button>
         </form>
         <p>
           Don't have an account? <a href="/signup">Sign Up</a>

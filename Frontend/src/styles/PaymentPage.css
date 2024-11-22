@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    
   }
   
   .sign-in-button {
@@ -25,17 +26,22 @@
   }
   
   .payment-main {
-    width: 100%;
-    flex: 1;
-    padding: 2rem;
-    background-color: #141414;
+    padding: 3rem 2rem;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .paymentsection {
+    padding: 3rem 2rem;
+    max-height: 300px;
+    background-color: #252525;
     color: #fff;
     text-align: center;
   }
   
   .payment-title {
-    margin-bottom: 2rem;
     font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
   
   .payment-content {
@@ -99,39 +105,3 @@
     font-weight: bold;
     cursor: pointer;
   }
-  
-  .footer {
-    background-color: #121212;
-    padding: 2rem;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    padding-bottom: 1rem;
-  }
-  
-  .footer-logo {
-    font-size: 1.2rem;
-  }
-  
-  .footer-nav a {
-    margin: 0 1rem;
-  }
-  
-  .footer-sign-in-btn {
-    background-color: #ffd700;
-    color: #121212;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    color: #aaa;
-    margin-top: 1rem;
-  }
-  
