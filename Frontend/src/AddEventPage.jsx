@@ -9,11 +9,13 @@ import { MdOutlineEvent } from "react-icons/md";
 import { MdEventAvailable } from "react-icons/md";
 import { FaPrayingHands } from "react-icons/fa";
 import EventPopup from "./components/EventPopup";
+
 const AddEventPage = () => {
   const [activeTab, setActiveTab] = useState("Users");
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 78;
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const renderContent = () => {
     if (activeTab === "Users") {
       return (
@@ -52,11 +54,78 @@ const AddEventPage = () => {
     }
 
     if (activeTab === "Events") {
-      return <div className="placeholder">Event List Content</div>;
+      return (
+        <div className="table-content">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Event Name</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Tickets Sold</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array(9)
+                .fill(null)
+                .map((_, index) => (
+                  <tr key={index}>
+                    <td>{`E000${index + 1}`}</td>
+                    <td>Event {index + 1}</td>
+                    <td>Location {index + 1}</td>
+                    <td>{`2024-12-${index + 1}`}</td>
+                    <td>5:00 PM</td>
+                    <td>{index * 10}</td>
+                    <td>
+                      <button className="edit-btn"><FaEdit /></button>
+                      <button className="delete-btn"><RiDeleteBin5Line /></button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      );
     }
 
     if (activeTab === "Bookings") {
-      return <div className="placeholder">Bookings List Content</div>;
+      return (
+        <div className="table-content">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Event Name</th>
+                <th>Username</th>
+                <th>Tickets Purchased</th>
+                <th>Total Amount</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array(9)
+                .fill(null)
+                .map((_, index) => (
+                  <tr key={index}>
+                    <td>{`B000${index + 1}`}</td>
+                    <td>Event {index + 1}</td>
+                    <td>User {index + 1}</td>
+                    <td>{index + 2}</td>
+                    <td>${(index + 2) * 20}</td>
+                    <td>{`2024-12-${index + 1}`}</td>
+                    <td>
+                      <button className="view-details-btn">View Details</button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      );
     }
   };
 
@@ -104,8 +173,9 @@ const AddEventPage = () => {
         </div>
 
         <div className="search-export">
-        <button className="export-btn">Export List</button>
-          <input className="search-bar" type="text" placeholder="Search here..." /> <div id="addsearch"><FiSearch /></div>
+          <button className="export-btn">Export List</button>
+          <input className="search-bar" type="text" placeholder="Search here..." />
+          <div id="addsearch"><FiSearch /></div>
           <button
             className="add-event-button"
             onClick={() => setIsPopupOpen(true)}
@@ -140,7 +210,6 @@ const AddEventPage = () => {
         onClose={() => setIsPopupOpen(false)}
       />
     </div>
-    
   );
 };
 
