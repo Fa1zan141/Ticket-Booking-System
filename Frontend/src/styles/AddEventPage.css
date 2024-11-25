@@ -1,5 +1,5 @@
 .add-event-button {
-  background-color: #ffd700;
+  background-color: #EDE817;
   color: #000;
   border: none;
   padding: 10px 20px;
@@ -9,7 +9,7 @@
 }
 
 .add-event-button:hover {
-  background-color: #e5c100;
+  background-color: #EDE817;
 }
 #addsearch{
   position: absolute;
@@ -17,7 +17,7 @@
   top: 10px;
 }
 .view-details-btn{
-  background-color: #ffd700;
+  background-color: #EDE817;
   color: #000;
   border: none;
   padding: 10px 20px;

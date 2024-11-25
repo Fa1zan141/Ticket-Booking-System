@@ -1,4 +1,4 @@
-/* Popup Overlay */
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -12,7 +12,6 @@
   z-index: 999;
 }
 
-/* Popup Container */
 .popup-container {
   background-color: #1a1a1a;
   padding: 30px;
@@ -22,15 +21,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Title */
 .popup-title {
-  color: #ffff55;
+  color: #EDE817;
   margin-bottom: 20px;
   text-align: center;
   font-size: 24px;
 }
 
-/* Form Grid */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -38,7 +35,7 @@
   margin-top: 20px;
 }
 
-/* Form Group */
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -50,11 +47,10 @@
 }
 
 .required {
-  color: #ffff55;
+  color: #EDE817;
   margin-left: 5px;
 }
 
-/* Input Fields */
 .form-input {
   background-color: #333;
   color: #fff;
@@ -76,7 +72,6 @@
   color: #fff;
 }
 
-/* Image Upload Section */
 .image-upload-section {
   grid-column: span 1;
   display: flex;
@@ -94,7 +89,7 @@
 }
 
 .image-check-icon {
-  color: #ffff55;
+  color: #EDE817;
   position: absolute;
   bottom: -10px;
   right: -10px;
@@ -103,7 +98,7 @@
   font-size: 20px;
 }
 
-/* Buttons */
+
 .form-buttons {
   display: flex;
   justify-content: flex-end;
@@ -121,7 +116,7 @@
 }
 
 .save-button {
-  background-color: #ffff55;
+  background-color: #EDE817;
   color: #000;
   border: none;
   border-radius: 5px;

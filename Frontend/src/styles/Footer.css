@@ -1,4 +1,3 @@
-/* General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +6,7 @@
 
 html, body {
   width: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -26,7 +25,7 @@ html, body {
   top: -30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #f5c000;
+  background-color: #EDE817;
   padding: 1.5rem;
   border-radius: 8px;
   text-align: center;
@@ -54,7 +53,7 @@ html, body {
   margin-left: 120px;
   font-size: 2rem;
   font-weight: bold;
-  color: #f5c000;
+  color: #EDE817;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -75,11 +74,11 @@ html, body {
 }
 
 .footer-section-link:hover {
-  color: #f5c000;
+  color: #EDE817;
 }
 
 .footer-section-cta-button {
-  background-color: #f5c000;
+  background-color: #EDE817;
   color: #1a1a1a;
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
@@ -119,10 +118,9 @@ html, body {
 }
 
 .footer-section-social-icon:hover {
-  color: #f5c000;
+  color: #EDE817;
 }
 
-/* Media Query for Mobile View */
 @media (max-width: 768px) {
   .footer-section-cta {
     width: 90%;

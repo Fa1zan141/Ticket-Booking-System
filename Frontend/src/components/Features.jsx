@@ -14,8 +14,8 @@ function Features() {
       <div className="features-content">
         <div className="features-text">
           <p>
-            At our platform, we believe in offering more than just tickets – we provide an exceptional experience from
-            start to finish. Choose us for your event ticketing needs and experience the difference.
+            At our platform, we believe in offering more than just tickets – we  provide an <br /> exceptional experience from
+            start to finish. Choose us for your event ticketing <br /> needs and experience the difference.
           </p>
         </div>
         <div className="features-heading">

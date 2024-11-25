@@ -1,0 +1,27 @@
+.event-banner {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #252525;
+  }
+  
+  .event-title {
+    font-size: 36px;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  
+  .event-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .location, .date {
+    background-color: #0000006b;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #EDE817;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  

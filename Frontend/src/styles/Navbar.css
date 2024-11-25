@@ -7,7 +7,7 @@ html,body {
   height: 100%;
   width: 100%;
   position: relative;
-  font-family: Inter;
+  font-family: Inter, sans-serif;
 }
 .navbar {
     display: flex;
@@ -38,13 +38,13 @@ html,body {
   }
   
   .nav-links a:hover {
-    color: #f5c000;
+    color: #EDE817;
   }
   
   .sign-in {
     padding: 0.5rem 1rem;
     width: 120px;
-    background-color: #f5c000;
+    background-color: #EDE817;
     border: none;
     margin-right: 10px;
     font-size: 14px;
@@ -56,7 +56,7 @@ html,body {
   
   .sign-in:hover {
     background-color: #292929;
-    color: #f5c000;
+    color: #EDE817;
     transition: background-color 0.3s ease;
   }
   

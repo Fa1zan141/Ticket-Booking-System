@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./styles/CardPaymentPage.css";
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import PaymentBanner from "./components/PaymentBanner";
 import { useNavigate } from "react-router-dom";
+
 const CardPaymentPage = () => {
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
@@ -10,6 +12,8 @@ const CardPaymentPage = () => {
     cvv: "",
     nameOnCard: "",
   });
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,21 +21,18 @@ const CardPaymentPage = () => {
   };
 
   const handlePayment = () => {
-    alert("Payment Submitted!");
+    setPaymentSuccess(true);
   };
 
-  
-{/* const closePopup = () => {
+  const closePopup = () => {
     setPaymentSuccess(false);
+    navigate("/"); 
   };
-*/}
- 
+
   return (
     <div className="payment-page-container">
-      <Navbar></Navbar>
-      <div className="paymentsection">
-        <h1 className="payment-title">PAYMENT</h1>
-        </div>
+      <Navbar />
+      <PaymentBanner />
       <main className="payment-main">
         <div className="payment-content">
           <div className="payment-image-wrapper">
@@ -97,8 +98,8 @@ const CardPaymentPage = () => {
           </div>
         </div>
       </main>
-{/*
-{paymentSuccess && (
+
+      {paymentSuccess && (
         <div className="popup-overlay">
           <div className="popup">
             <div className="popup-icon">✔️</div>
@@ -109,12 +110,8 @@ const CardPaymentPage = () => {
           </div>
         </div>
       )}
-        */
 
-}
-      
-
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

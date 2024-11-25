@@ -1,79 +1,94 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-html,body {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    font-family: Inter;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: Inter, sans-serif;
 }
+
 .features {
-  background-color: #252525;
-  color: #fff;
-  padding: 3rem 1.5rem;
-  text-align: center;
+background-color: #252525;
+color: #fff;
+padding: 3rem 1.5rem;
+text-align: center;
+display: flex;
+justify-content: center; 
+align-items: center; 
+flex-direction: column; 
 }
 
 .features-content {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 2rem;
+display: flex;
+gap: 2rem;
+align-items: center;
+margin-bottom: 2rem;
+justify-content: center; 
 }
 
 .features-text p {
-  font-size: 1rem;
-  line-height: 1.6;
-  width: 800px;
-  color: #aaa;
-  text-align: justify;
-  text-justify: inter-word;
-  padding-inline: 100px;
-  
+font-size: 1.1rem;
+line-height: 1.6;
+width: 800px;
+color: #aaa;
+text-align: justify;
+text-justify: inter-word;
+padding-inline: 40px;
 }
 
 .features-heading h2 {
-  font-size: 1.8rem;
-  color: #fff;
-  text-align: justify;
-  text-justify: inter-word;
-  font-weight: bold;
+font-size: 1.8rem;
+color: #fff;
+text-align: justify;
+text-justify: inter-word;
+font-weight: bold;
 }
 
 .features-cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+display: flex;
+justify-content: center; 
+align-items: center; 
+flex-wrap: wrap;
+gap: 1.5rem;
 }
 
 .feature-card {
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  padding: 1.5rem;
-  width: 260px;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
- 
+background-color: #1a1a1a;
+border-radius: 10px;
+padding: 1.5rem;
+width: 260px;
+align-items: center;
+text-align: center;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .feature-card:hover {
-  transform: scale(1.05);
-  background-color: #333;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+transform: scale(1.05);
+background-color: #333;
+transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .feature-icon {
-  font-size: 2rem;
-  color: #f5c000;
-  margin-bottom: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-left: 80px;
+width: 3rem;
+height: 3rem; 
+color: #fff; 
+background-color: #EDE817; 
+border-radius: 50%; 
+margin-bottom: 1rem;
+font-size: 1.5rem; 
 }
 
 .feature-card h3 {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #f5c000;
+font-size: 1rem;
+font-weight: bold;
+color: #EDE817;
 }
