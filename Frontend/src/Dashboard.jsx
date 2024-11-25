@@ -4,7 +4,7 @@ import { FiLogOut, FiSearch } from "react-icons/fi";
 import { FaEdit, FaUsers, FaPrayingHands } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdOutlineEvent, MdEventAvailable } from "react-icons/md";
-
+import './styles/Dashboard.css'
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Users");
   const [currentPage, setCurrentPage] = useState(1);
