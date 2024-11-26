@@ -34,19 +34,8 @@ const PaymentPage = () => {
           <div className="payment-method-wrapper">
             <h2 className="payment-method-title">Select Payment Method</h2>
             <div className="payment-methods">
-              <div className="suggested-method">
-                <h3>Suggested Payment Method</h3>
-                <button
-                  className={`payment-button ${
-                    paymentMethod === "bank" ? "active" : ""
-                  }`}
-                  onClick={() => handlePaymentChange("bank")}
-                >
-                  Payment Via Bank Account
-                </button>
-              </div>
               <div className="other-methods">
-                <h3>Other Payment Methods</h3>
+                <h3>Payment Methods</h3>
                 <button
                   className={`payment-button ${
                     paymentMethod === "credit" ? "active" : ""

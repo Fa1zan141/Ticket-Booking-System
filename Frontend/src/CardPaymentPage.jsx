@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./styles/CardPaymentPage.css";
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import PaymentBanner from "./components/PaymentBanner";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CardPaymentPage = () => {
   const [cardDetails, setCardDetails] = useState({
@@ -13,6 +14,8 @@ const CardPaymentPage = () => {
     nameOnCard: "",
   });
   const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -20,13 +23,54 @@ const CardPaymentPage = () => {
     setCardDetails({ ...cardDetails, [name]: value });
   };
 
-  const handlePayment = () => {
-    setPaymentSuccess(true);
+  const handlePayment = async () => {
+    setIsLoading(true);
+    setError(null); // Reset error state before starting a new request
+    try {
+      const token = localStorage.getItem("authToken");
+      console.log("Retrieved Token:", token); // Debugging
+  
+      if (!token) {
+        // Show error instead of redirecting
+        setError("Session expired. Please log in to proceed.");
+        return;
+      }
+  
+      const response = await axios.post(
+        "http://localhost:3000/api/payments",
+        cardDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
+      if (response.status === 201) {
+        setPaymentSuccess(true);
+      } else {
+        setError("Unexpected error occurred. Please try again.");
+      }
+    } catch (err) {
+      console.error("Payment error:", err);
+  
+      if (err.response?.status === 401) {
+        // Show error instead of redirecting
+        setError("Unauthorized. Please log in again.");
+      } else {
+        const errorMessage =
+          err.response?.data?.message || "Payment failed. Please try again.";
+        setError(errorMessage);
+      }
+    } finally {
+      setIsLoading(false); // Reset loading state
+    }
   };
 
   const closePopup = () => {
     setPaymentSuccess(false);
-    navigate("/"); 
+    navigate("/"); // Navigate back to home
   };
 
   return (
@@ -38,8 +82,12 @@ const CardPaymentPage = () => {
           <div className="payment-image-wrapper">
             <img
               src="../src/assets/Img1.jpg"
-              alt="Christmas Event"
+              alt="Event Banner"
               className="payment-image"
+              onError={(e) => {
+                e.target.onerror = null; // Prevent infinite loop
+                e.target.src = "https://via.placeholder.com/600x400"; // Fallback image
+              }}
             />
           </div>
           <div className="card-details-wrapper">
@@ -63,7 +111,7 @@ const CardPaymentPage = () => {
                     type="text"
                     id="expiryDate"
                     name="expiryDate"
-                    placeholder="mm / yy"
+                    placeholder="MM/YY"
                     value={cardDetails.expiryDate}
                     onChange={handleInputChange}
                   />
@@ -91,13 +139,20 @@ const CardPaymentPage = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <button type="button" className="done-button" onClick={handlePayment}>
-                Done
+              <button
+                type="button"
+                className="done-button"
+                onClick={handlePayment}
+                disabled={isLoading} // Disable button when loading
+              >
+                {isLoading ? "Processing..." : "Done"}
               </button>
             </form>
           </div>
         </div>
       </main>
+
+      {error && <div className="error-message">{error}</div>}
 
       {paymentSuccess && (
         <div className="popup-overlay">

@@ -11,6 +11,7 @@ import CardPaymentPage from './CardPaymentPage';
 import ContactUs from './ContactUs';
 import AddEventPage from './AddEventPage';
 import Dashboard from './Dashboard';
+import UpdateEventForm from './components/UpdateEventForm';
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +27,7 @@ function App() {
     <Route path='/Contact-us' element={<ContactUs/>} />
     <Route path='/add-event' element={<AddEventPage/>} />
     <Route path='/dashboard' element={<Dashboard/>} />
+    <Route path='/update-event/:id' element={<UpdateEventForm />} />
     </Routes>
     </BrowserRouter>
   )

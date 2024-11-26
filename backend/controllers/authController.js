@@ -7,7 +7,7 @@ const authController = {
     register: async (req, res) => {
         try {
             const { email, username, password, role } = req.body;
-
+              console.log(req.body);
             // Default role to "user" if not provided
             const userRole = role || 'user';
 
@@ -31,21 +31,45 @@ const authController = {
     login: async (req, res) => {
         try {
             const { email, password } = req.body;
-
+    
+            // Log the received credentials (ensure sensitive information is not leaked in production logs)
+            console.log("Login request:", req.body);
+    
+            // Check if the user exists by email
             const user = await User.findByEmail(email);
-            if (!user) return res.status(401).json({ message: 'Invalid credentials' });
-
+            if (!user) {
+                return res.status(401).json({ message: 'Invalid credentials' });
+            }
+    
+            // Verify password
             const isValidPassword = await bcrypt.compare(password, user.password);
-            if (!isValidPassword) return res.status(401).json({ message: 'Invalid credentials' });
-
-            const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
-            // Update last_login
+            if (!isValidPassword) {
+                return res.status(401).json({ message: 'Invalid credentials' });
+            }
+    
+            // Generate JWT token with user id and role
+            const token = jwt.sign(
+                { id: user.id, role: user.role }, 
+                process.env.JWT_SECRET, 
+                { expiresIn: process.env.JWT_EXPIRES_IN }
+            );
+    
+            // Update last login timestamp
             const lastLoginTime = await User.updateLastLogin(user.id);
-            res.status(200).json({ message: `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} login successful`, token, last_login: lastLoginTime, });
+    
+            // Respond with the token, role, and last login time
+            res.status(200).json({ 
+                message: `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} login successful`, 
+                token, 
+                role: user.role, // Explicitly include the role in the response
+                last_login: lastLoginTime 
+            });
         } catch (error) {
+            console.error("Error during login:", error);
             res.status(500).json({ message: 'Error logging in', error });
         }
     },
+    
 };
 
 module.exports = authController;
