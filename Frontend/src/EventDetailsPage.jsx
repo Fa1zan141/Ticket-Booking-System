@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import EventBanner from "./components/EventBanner";
+import axios from "axios";
 import "./styles/EventDetailsPage.css";
-import { useNavigate } from "react-router-dom";
-
 
 const EventDetailsPage = () => {
+  const { id } = useParams();  // Get event ID from the URL
+  const [event, setEvent] = useState(null);
   const navigate = useNavigate();
+
+  // Fetch event details by ID
+  useEffect(() => {
+    const fetchEventDetails = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`http://localhost:3000/api/events/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setEvent(response.data); // Store event details in state
+      } catch (error) {
+        console.error("Error fetching event details:", error);
+      }
+    };
+
+    fetchEventDetails();
+  }, [id]);
+
   const handleNavigation = () => {
     navigate("/payment");
   };
+
+  if (!event) {
+    return <p>Loading...</p>; // Show loading text while fetching event details
+  }
 
   return (
     <>
@@ -20,23 +44,19 @@ const EventDetailsPage = () => {
       <div className="content-section">
         <div className="image-wrapper">
           <img
-            src="../src/assets/Img1.jpg"
-            alt="Christmas Eve Event"
+            src={event.imageUrl || "../src/assets/Img1.jpg"}  // Use event image if available
+            alt={event.title}
             className="event-image"
           />
         </div>
         <div className="description-wrapper">
-          <h2 className="description-title">Christmas Eve</h2>
+          <h2 className="description-title">{event.title}</h2>
           <div className="ticket-info">
-            <span className="ticket-price">$29.00</span>
+            <span className="ticket-price">${event.price}</span>
             <button onClick={handleNavigation} className="ticket-button">Book Ticket</button>
           </div>
           <p className="description-text">
-            I am very happy with my experience using this platform to purchase
-            event tickets. The ticket purchasing process was very easy and
-            fast, and I was satisfied with the responsive customer service. I
-            will definitely use this platform again for my future ticket
-            purchases!
+            {event.description || "No description available."}
           </p>
         </div>
       </div>

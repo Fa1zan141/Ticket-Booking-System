@@ -12,6 +12,7 @@ import ContactUs from './ContactUs';
 import AddEventPage from './AddEventPage';
 import Dashboard from './Dashboard';
 import UpdateEventForm from './components/UpdateEventForm';
+import UpdateUserForm from './components/UpdateUserForm';
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +21,7 @@ function App() {
     <Route path='/signin' element={<SignIn/>} />
     <Route path='/signup' element={<SignUp/>} />
     <Route path='/event' element={<EventsPage/>} />
-    <Route path='/eventdetail' element={<EventDetailsPage/>} />
+    <Route path="/eventdetail/:id" element={<EventDetailsPage />} />
     <Route path='/Payconfirmation' element={<PaymentConfirmation/>} />
     <Route path='/Payment' element={<PaymentPage/>} />
     <Route path='/CardPayment' element={<CardPaymentPage/>} />
@@ -28,6 +29,7 @@ function App() {
     <Route path='/add-event' element={<AddEventPage/>} />
     <Route path='/dashboard' element={<Dashboard/>} />
     <Route path='/update-event/:id' element={<UpdateEventForm />} />
+    <Route path='/update-user/:id' element={<UpdateUserForm/>} />
     </Routes>
     </BrowserRouter>
   )
