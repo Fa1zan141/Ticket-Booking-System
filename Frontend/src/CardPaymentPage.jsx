@@ -1,22 +1,39 @@
-import React, { useState } from "react";
+import  { useEffect, useState } from "react";
 import "./styles/CardPaymentPage.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PaymentBanner from "./components/PaymentBanner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const CardPaymentPage = () => {
+  const location = useLocation();
+  const { eventId, userId, tickets, totalAmount } = location.state; // Retrieve eventId, userId, tickets, and totalAmount
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
     expiryDate: "",
     cvv: "",
     nameOnCard: "",
   });
+  const [eventImage, setEventImage] = useState(null); // State for event image
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
+
+  // Fetch event details to get the image
+  useEffect(() => {
+    const fetchEventDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/events/${eventId}`);
+        setEventImage(response.data.image); // Set event image
+      } catch (err) {
+        setError("Failed to load event details. Please try again.", err);
+      }
+    };
+
+    fetchEventDetails();
+  }, [eventId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,16 +44,15 @@ const CardPaymentPage = () => {
     setIsLoading(true);
     setError(null); // Reset error state before starting a new request
     try {
-      const token = localStorage.getItem("authToken");
-      console.log("Retrieved Token:", token); // Debugging
-  
+      const token = localStorage.getItem("token"); // Get auth token
+
       if (!token) {
-        // Show error instead of redirecting
         setError("Session expired. Please log in to proceed.");
         return;
       }
-  
-      const response = await axios.post(
+
+      // Save payment details
+      const paymentResponse = await axios.post(
         "http://localhost:3000/api/payments",
         cardDetails,
         {
@@ -46,25 +62,41 @@ const CardPaymentPage = () => {
           },
         }
       );
-  
-      if (response.status === 201) {
-        setPaymentSuccess(true);
+
+      if (paymentResponse.status === 201) {
+        const paymentId = paymentResponse.data.paymentId;
+
+        // Save booking details
+        const bookingResponse = await axios.post(
+          "http://localhost:3000/api/bookings",
+          {
+            ticketCount: tickets,
+            eventId,
+            customerId: userId,
+            paymentId,
+            totalAmount,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (bookingResponse.status === 201) {
+          setPaymentSuccess(true);
+        } else {
+          setError("Booking failed. Please try again.");
+        }
       } else {
-        setError("Unexpected error occurred. Please try again.");
+        setError("Payment failed. Please try again.");
       }
     } catch (err) {
-      console.error("Payment error:", err);
-  
-      if (err.response?.status === 401) {
-        // Show error instead of redirecting
-        setError("Unauthorized. Please log in again.");
-      } else {
-        const errorMessage =
-          err.response?.data?.message || "Payment failed. Please try again.";
-        setError(errorMessage);
-      }
+      console.error("Error:", err);
+      setError("An error occurred. Please try again.");
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false);
     }
   };
 
@@ -80,15 +112,19 @@ const CardPaymentPage = () => {
       <main className="payment-main">
         <div className="payment-content">
           <div className="payment-image-wrapper">
-            <img
-              src="../src/assets/Img1.jpg"
-              alt="Event Banner"
-              className="payment-image"
-              onError={(e) => {
-                e.target.onerror = null; // Prevent infinite loop
-                e.target.src = "https://via.placeholder.com/600x400"; // Fallback image
-              }}
-            />
+            {eventImage ? (
+              <img
+                src={`http://localhost:3000/${eventImage}`}
+                alt="Event Banner"
+                className="payment-image"
+                onError={(e) => {
+                  e.target.onerror = null; // Prevent infinite loop
+                  e.target.src = "https://via.placeholder.com/600x400"; // Fallback image
+                }}
+              />
+            ) : (
+              <p>Loading event image...</p>
+            )}
           </div>
           <div className="card-details-wrapper">
             <h2 className="card-details-title">Card Details</h2>
@@ -143,7 +179,7 @@ const CardPaymentPage = () => {
                 type="button"
                 className="done-button"
                 onClick={handlePayment}
-                disabled={isLoading} // Disable button when loading
+                disabled={isLoading}
               >
                 {isLoading ? "Processing..." : "Done"}
               </button>

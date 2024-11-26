@@ -1,10 +1,18 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/Footer.css';
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 
 function Footer() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if the token exists in localStorage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // Set isLoggedIn to true if token exists
+  }, []);
+
   return (
     <footer className="footer-section">
       <div className="footer-section-cta">
@@ -21,7 +29,9 @@ function Footer() {
         <div className="footer-section-links">
           <a href="/event" className="footer-section-link">Event</a>
           <a href="/Contact-us" className="footer-section-link">Contact</a>
-          <a href="/signin" className="footer-section-link footer-section-cta-button">Sign In</a>
+          {!isLoggedIn && (
+            <a href="/signin" className="footer-section-link footer-section-cta-button">Sign In</a>
+          )}
         </div>
       </div>
 

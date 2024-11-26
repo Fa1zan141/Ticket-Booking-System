@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import axios from "axios";
 import "./styles/SignIn.css";
 import { useNavigate } from "react-router-dom";
@@ -16,15 +16,17 @@ const SignIn = () => {
       const response = await axios.post("http://localhost:3000/api/auth/login", { email, password });
 
       // Extract token, role, and message from the response
-      const { token, role, message } = response.data;
+      const { token, role, message , userId} = response.data;
 
       // Store the token in localStorage and set the Authorization header for future requests
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
       axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 
       // Navigate based on role
       if (role === "admin") {
         navigate("/dashboard"); // Navigate to Add Event page for admin
+        console.log(message);
       } else if (role === "user") {
         navigate("/"); // Navigate to Dashboard for user
       } else {

@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./styles/PaymentPage.css";
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import { useNavigate } from "react-router-dom";
-const PaymentPage = () => {
-  const [paymentMethod, setPaymentMethod] = useState("bank");
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import { useLocation,  useNavigate } from "react-router-dom";
 
-  const handlePaymentChange = (method) => {
-    setPaymentMethod(method);
-  };
+const PaymentPage = () => {
+  const [paymentMethod, setPaymentMethod] = useState("credit");
   const navigate = useNavigate();
+  const location = useLocation();
+  const { eventId, userId } = location.state;
 
   const handleNavigation = () => {
-    navigate("/Payconfirmation"); 
+    navigate("/Payconfirmation", { state: { eventId, userId } }); // Pass eventId and userId
   };
 
   return (
     <div className="payment-page-container">
-     <Navbar></Navbar>
-     <div className="paymentsection">
+      <Navbar />
+      <div className="paymentsection">
         <h1 className="payment-title">PAYMENT</h1>
-        </div>
+      </div>
       <main className="payment-main">
-        
         <div className="payment-content">
           <div className="payment-image-wrapper">
             <img
@@ -34,23 +32,20 @@ const PaymentPage = () => {
           <div className="payment-method-wrapper">
             <h2 className="payment-method-title">Select Payment Method</h2>
             <div className="payment-methods">
-              <div className="other-methods">
-                <h3>Payment Methods</h3>
-                <button
-                  className={`payment-button ${
-                    paymentMethod === "credit" ? "active" : ""
-                  }`}
-                  onClick={() => handlePaymentChange("credit")}
-                >
-                  Payment Via Credit Card
-                </button>
-              </div>
+              <button
+                className={`payment-button ${
+                  paymentMethod === "credit" ? "active" : ""
+                }`}
+                onClick={() => setPaymentMethod("credit")}
+              >
+                Payment Via Credit Card
+              </button>
             </div>
             <button onClick={handleNavigation} className="next-button">Next</button>
           </div>
         </div>
       </main>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

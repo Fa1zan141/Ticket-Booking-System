@@ -41,7 +41,7 @@ html,body {
     color: #EDE817;
   }
   
-  .sign-in {
+  .sign-in, .logout {
     padding: 0.5rem 1rem;
     width: 120px;
     background-color: #EDE817;
@@ -54,9 +54,10 @@ html,body {
     border-radius: 50px;
   }
   
-  .sign-in:hover {
+  .sign-in:hover , .logout:hover{
     background-color: #292929;
     color: #EDE817;
     transition: background-color 0.3s ease;
+    border: 1px solid #EDE817;
   }
   

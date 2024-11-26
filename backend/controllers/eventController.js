@@ -10,6 +10,20 @@ const eventController = {
         }
     },
 
+    getEventById: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const event = await Event.getById(id);
+            if (!event) {
+                return res.status(404).json({ message: "Event not found" });
+            }
+            res.status(200).json(event);
+        } catch (error) {
+            res.status(500).json({ message: 'Error fetching event details', error });
+        }
+    },
+    
+
     createEvent: async (req, res) => {
         try {
             const eventDetails = req.body;

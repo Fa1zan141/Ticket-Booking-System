@@ -8,6 +8,9 @@ const router = express.Router();
 // Anyone can view all events
 router.get('/', eventController.getAllEvents);
 
+router.get('/:id', eventController.getEventById);
+
+
 // Only admins can create a new event (with image upload)
 router.post('/', authMiddleware(['admin']), upload.single('image'), eventController.createEvent);
 

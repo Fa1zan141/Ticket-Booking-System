@@ -61,6 +61,7 @@ const authController = {
             res.status(200).json({ 
                 message: `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} login successful`, 
                 token, 
+                userId: user.id,
                 role: user.role, // Explicitly include the role in the response
                 last_login: lastLoginTime 
             });

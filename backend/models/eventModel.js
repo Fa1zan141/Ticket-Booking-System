@@ -19,6 +19,11 @@ const Event = {
         const [rows] = await db.execute(sql);
         return rows;
     },
+    getById: async (id) => {
+        const sql = 'SELECT * FROM events WHERE id = ?';
+        const [rows] = await db.execute(sql, [id]);
+        return rows[0];
+    },    
     delete: async (id) => {
         const sql = 'DELETE FROM events WHERE id = ?';
         await db.execute(sql, [id]);
