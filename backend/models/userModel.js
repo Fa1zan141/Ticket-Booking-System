@@ -49,7 +49,7 @@ const User = {
             if (updates.password) {
                 const hashedPassword = await bcrypt.hash(updates.password, 10);
                 sql += 'password = ?, ';
-                params.push(hashedPassword);
+                params.push(updates.password);
             }
     
             sql = sql.slice(0, -2) + ' WHERE id = ?'; 

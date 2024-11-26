@@ -11,12 +11,12 @@ const authController = {
             // Default role to "user" if not provided
             const userRole = role || 'user';
 
-            const hashedPassword = await bcrypt.hash(password, 10);
+            // const hashedPassword = await bcrypt.hash(password, 10);
 
             const userId = await User.create({
                 email,
                 username: userRole === 'admin' ? null : username,
-                password: hashedPassword,
+                password: password,
                 role: userRole,
             });
 
@@ -42,8 +42,8 @@ const authController = {
             }
     
             // Verify password
-            const isValidPassword = await bcrypt.compare(password, user.password);
-            if (!isValidPassword) {
+            // const isValidPassword = await bcrypt.compare(password, user.password);
+            if (password === user.password) {
                 return res.status(401).json({ message: 'Invalid credentials' });
             }
     

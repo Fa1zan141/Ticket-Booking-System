@@ -103,7 +103,7 @@ const AddEventPage = () => {
                 <th>Tickets Purchased</th>
                 <th>Total Amount</th>
                 <th>Date</th>
-                <th>Action</th>
+                {/* <th>Action</th> */}
               </tr>
             </thead>
             <tbody>

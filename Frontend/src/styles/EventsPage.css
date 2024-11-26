@@ -22,4 +22,38 @@ html,body {
     border: none;
     outline: none;
   }
+  .image-upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .image-preview {
+    width: 200px; /* Adjust width as needed */
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover; /* Ensures the image is scaled without distortion */
+    border-radius: 8px; /* Optional: Rounded corners */
+    border: 2px solid #ddd; /* Optional: Add a border for better visibility */
+    margin-top: 10px;
+  }
+  
+  .image-placeholder {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #f7f7f7;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .image-placeholder:hover {
+    border-color: #aaa;
+  }
   

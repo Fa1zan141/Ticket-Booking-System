@@ -8,20 +8,18 @@ import { MdOutlineEvent, MdEventAvailable } from "react-icons/md";
 import { useNavigate } from "react-router-dom"; 
 import './styles/Dashboard.css';
 import EventPopup from "./components/EventPopup";
-
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Users");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [currentAction, setCurrentAction] = useState("");
-  const [formData, setFormData] = useState({});
+
   const [users, setUsers] = useState([]);
   const [events, setEvents] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 78;
+  const rowsPerPage = 9; // Define rows per page for pagination
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (activeTab === "Users") fetchUsers();
@@ -29,14 +27,12 @@ const Dashboard = () => {
     if (activeTab === "Bookings") fetchBookings();
   }, [activeTab]);
 
-  // Fetch Users
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get("http://localhost:3000/api/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data);
       setUsers(response.data);
       setUserCount(response.data.length);
     } catch (error) {
@@ -44,7 +40,6 @@ const Dashboard = () => {
     }
   };
 
-  // Fetch Events
   const fetchEvents = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -57,51 +52,82 @@ const Dashboard = () => {
     }
   };
 
-  // Fetch Bookings
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:3000/api/bookings", {
+
+      const bookingsResponse = await axios.get("http://localhost:3000/api/bookings", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setBookings(response.data);
+      const bookings = bookingsResponse.data;
+
+      const [usersResponse, eventsResponse] = await Promise.all([
+        axios.get("http://localhost:3000/api/users", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get("http://localhost:3000/api/events", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
+
+      const users = usersResponse.data;
+      const events = eventsResponse.data;
+
+      const enhancedBookings = bookings.map((booking) => {
+        const event = events.find((e) => e.id === booking.eventId) || {};
+        const user = users.find((u) => u.id === booking.customerId) || {};
+
+        return {
+          ...booking,
+          eventName: event.name || "Unknown Event",
+          username: user.username || "Unknown User",
+          eventDate: event.date?.split("T")[0] || "Unknown Date",
+        };
+      });
+
+      setBookings(enhancedBookings);
     } catch (error) {
       console.error("Error fetching bookings:", error);
     }
   };
 
-  // Handle Edit Click to navigate based on active tab
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/signin");
+  };
+
   const handleEditClick = (item) => {
     if (activeTab === "Users") {
-      // Navigate to update user page with user ID
       navigate(`/update-user/${item.id}`);
     } else if (activeTab === "Events") {
-      // Navigate to update event page with event ID
       navigate(`/update-event/${item.id}`);
     }
   };
 
-  // Handle Delete (for both Users and Events)
   const handleDelete = async (itemId) => {
     const token = localStorage.getItem("token");
 
     try {
       if (activeTab === "Users") {
-        // Deleting a User
         await axios.delete(`http://localhost:3000/api/users/${itemId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUsers(users.filter(user => user.id !== itemId)); // Remove deleted user from state
+        setUsers(users.filter((user) => user.id !== itemId));
       } else if (activeTab === "Events") {
-        // Deleting an Event
         await axios.delete(`http://localhost:3000/api/events/${itemId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setEvents(events.filter(event => event.id !== itemId)); // Remove deleted event from state
+        setEvents(events.filter((event) => event.id !== itemId));
       }
     } catch (error) {
       console.error("Error deleting item:", error);
     }
+  };
+
+  const paginateData = (items) => {
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    return items.slice(startIndex, endIndex);
   };
 
   const renderContent = () => {
@@ -109,16 +135,16 @@ const Dashboard = () => {
     const headersMap = {
       Users: ["#", "User Name", "Email", "Role", "Action"],
       Events: ["#", "Event Name", "Location", "Date", "Time", "Tickets Sold", "Action"],
-      Bookings: ["#", "Event Name", "User Name", "Tickets Purchased", "Total Amount", "Date", "Action"],
+      Bookings: ["#", "Event Name", "User Name", "Tickets Purchased", "Total Amount", "Date"],
     };
 
     const fieldsMap = {
       Users: ["username", "email", "role"],
       Events: ["name", "location", "date", "time", "ticketSold"],
-      Bookings: ["eventName", "userName", "ticketsPurchased", "totalAmount", "date"],
+      Bookings: ["eventName", "username", "ticketCount", "totalAmount", "eventDate"],
     };
 
-    const items = dataMap[activeTab];
+    const items = paginateData(dataMap[activeTab]);
     const headers = headersMap[activeTab];
     const fields = fieldsMap[activeTab];
 
@@ -135,18 +161,20 @@ const Dashboard = () => {
           <tbody>
             {items.map((item, index) => (
               <tr key={item.id}>
-                <td>{index + 1}</td>
+                <td>{(currentPage - 1) * rowsPerPage + index + 1}</td>
                 {fields.map((field) => (
                   <td key={field}>{item[field]}</td>
                 ))}
-                <td>
-                  <button className="edit-btn" onClick={() => handleEditClick(item)}>
-                    <FaEdit />
-                  </button>
-                  <button className="delete-btn" onClick={() => handleDelete(item._id)}>
-                    <RiDeleteBin5Line />
-                  </button>
-                </td>
+                {activeTab !== "Bookings" && (
+                  <td>
+                    <button className="edit-btn" onClick={() => handleEditClick(item)}>
+                      <FaEdit />
+                    </button>
+                    <button className="delete-btn" onClick={() => handleDelete(item.id)}>
+                      <RiDeleteBin5Line />
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
@@ -155,11 +183,16 @@ const Dashboard = () => {
     );
   };
 
+  const totalPages = Math.ceil(
+    (activeTab === "Users" ? users.length : activeTab === "Events" ? events.length : bookings.length) /
+    rowsPerPage
+  );
+
   return (
     <div className="dashboard">
       <nav className="dasnavbar">
         <div className="logo">🌟 Mellodian Community Park</div>
-        <button className="logout-button">
+        <button className="logout-button" onClick={handleLogout}>
           <FiLogOut /> Logout
         </button>
       </nav>
@@ -216,7 +249,7 @@ const Dashboard = () => {
       <footer className="footer">
         <div className="footer-left">2024 © All Rights Reserved.</div>
         <div className="pagination">
-          <span>Rows per page: 1-9 of {totalPages}</span>
+          <span>Rows per page: {rowsPerPage} of {totalPages}</span>
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((prev) => prev - 1)}

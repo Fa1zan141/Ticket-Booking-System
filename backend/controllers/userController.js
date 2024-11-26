@@ -9,6 +9,18 @@ const userController = {
             res.status(500).json({ message: 'Error fetching users', error });
         }
     },
+    getUserById: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const event = await User.findById(id);
+            if (!event) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            res.status(200).json(event);
+        } catch (error) {
+            res.status(500).json({ message: 'Error fetching user details', error });
+        }
+    },
 
     deleteUser: async (req, res) => {
         try {

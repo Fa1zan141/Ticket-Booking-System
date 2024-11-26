@@ -12,6 +12,7 @@ import ContactUs from './ContactUs';
 import AddEventPage from './AddEventPage';
 import Dashboard from './Dashboard';
 import UpdateEventForm from './components/UpdateEventForm';
+import UpdateUserForm from './components/UpdateUserForm';
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +29,7 @@ function App() {
     <Route path='/add-event' element={<AddEventPage/>} />
     <Route path='/dashboard' element={<Dashboard/>} />
     <Route path='/update-event/:id' element={<UpdateEventForm />} />
+    <Route path='/update-user/:id' element={<UpdateUserForm/>} />
     </Routes>
     </BrowserRouter>
   )

@@ -7,6 +7,8 @@ const router = express.Router();
 // Only admins can view all users
 router.get('/', authMiddleware(['admin']), userController.getAllUsers);
 
+router.get('/:id', userController.getUserById);
+
 // Only admins can delete a user
 router.delete('/:id', authMiddleware(['admin']), userController.deleteUser);
 
