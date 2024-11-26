@@ -36,6 +36,7 @@ const Dashboard = () => {
       const response = await axios.get("http://localhost:3000/api/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(response.data);
       setUsers(response.data);
       setUserCount(response.data.length);
     } catch (error) {
@@ -73,10 +74,10 @@ const Dashboard = () => {
   const handleEditClick = (item) => {
     if (activeTab === "Users") {
       // Navigate to update user page with user ID
-      navigate(`/update-user/${item._id}`);
+      navigate(`/update-user/${item.id}`);
     } else if (activeTab === "Events") {
       // Navigate to update event page with event ID
-      navigate(`/update-event/${item._id}`);
+      navigate(`/update-event/${item.id}`);
     }
   };
 
@@ -90,13 +91,13 @@ const Dashboard = () => {
         await axios.delete(`http://localhost:3000/api/users/${itemId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUsers(users.filter(user => user._id !== itemId)); // Remove deleted user from state
+        setUsers(users.filter(user => user.id !== itemId)); // Remove deleted user from state
       } else if (activeTab === "Events") {
         // Deleting an Event
         await axios.delete(`http://localhost:3000/api/events/${itemId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setEvents(events.filter(event => event._id !== itemId)); // Remove deleted event from state
+        setEvents(events.filter(event => event.id !== itemId)); // Remove deleted event from state
       }
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -133,7 +134,7 @@ const Dashboard = () => {
           </thead>
           <tbody>
             {items.map((item, index) => (
-              <tr key={item._id}>
+              <tr key={item.id}>
                 <td>{index + 1}</td>
                 {fields.map((field) => (
                   <td key={field}>{item[field]}</td>
